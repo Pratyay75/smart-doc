@@ -1,0 +1,17 @@
+# Node
+node_modules/
+package-lock.json
+
+# Python
+__pycache__/
+*.pyc
+venv/
+*.env
+pdf_data/
+rag_storage/
+# VSCode
+.vscode/
+
+# Other
+.DS_Store
+.env
