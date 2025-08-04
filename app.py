@@ -22,7 +22,11 @@ load_dotenv()
 
 app = Flask(__name__, static_folder="frontend/build", static_url_path="")
 
-CORS(app)
+CORS(app, origins=[
+    "http://localhost:3000",                   # For local development
+    "https://smartdoc.azurewebsites.net"       # For deployed frontend
+])
+
 
 
 logging.basicConfig(level=logging.INFO)
@@ -599,5 +603,5 @@ def index():
 
 
 # ------------------ START SERVER ------------------
-if __name__ == "__main__": 
-    app.run(debug=True)
+#if __name__ == "__main__": 
+ #   app.run(debug=True)
