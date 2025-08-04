@@ -365,7 +365,8 @@ const scrollToPage = (pageNum) => {
     <div className="pdf-extractor">
       <div className="left-panel">
   <h3>Upload PDF</h3>
-<input type="file" accept="application/pdf" onChange={handleFile} />
+<input type="file" accept="application/pdf" name="pdf" onChange={handleFile} />
+
 <button onClick={handleExtract} disabled={!pdfFile || loading} style={{ display: "flex", alignItems: "center" }}>
   {loading ? (
     <>

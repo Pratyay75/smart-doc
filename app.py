@@ -149,7 +149,12 @@ def extract_data():
             return jsonify({"error": "No PDF file provided"}), 400
 
         pdf_id = str(uuid.uuid4())
-        filename = file.filename
+        if not file or file.filename == "":
+            logging.error("❌ No PDF file uploaded.")
+            return jsonify({"error": "No PDF file uploaded"}), 400
+
+        filename = file.filename.rstrip().replace(" ", "_")
+
 
         from azure.storage.blob import BlobServiceClient
         from io import BytesIO
