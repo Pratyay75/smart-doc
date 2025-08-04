@@ -22,7 +22,8 @@ load_dotenv()
 
 app = Flask(__name__, static_folder="frontend/build", static_url_path="")
 
-CORS(app, origins="http://localhost:3000")
+CORS(app)
+
 
 logging.basicConfig(level=logging.INFO)
 
