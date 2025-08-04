@@ -153,7 +153,8 @@ def extract_data():
             logging.error("❌ No PDF file uploaded.")
             return jsonify({"error": "No PDF file uploaded"}), 400
 
-        filename = file.filename.rstrip().replace(" ", "_")
+        filename = (file.filename or f"uploaded_{uuid.uuid4()}.pdf").replace(" ", "_")
+
 
 
         from azure.storage.blob import BlobServiceClient
