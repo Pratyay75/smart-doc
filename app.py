@@ -22,10 +22,17 @@ load_dotenv()
 
 app = Flask(__name__, static_folder="frontend/build", static_url_path="")
 
-CORS(app, origins=[
-    "http://localhost:3000",                   # For local development
-    "https://smartdoc.azurewebsites.net"       # For deployed frontend
-])
+from flask_cors import CORS
+
+CORS(app, supports_credentials=True, resources={
+    r"/*": {
+        "origins": [
+            "http://localhost:3000",
+            "https://smartdoc.azurewebsites.net"
+        ]
+    }
+})
+
 
 
 
