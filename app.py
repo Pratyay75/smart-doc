@@ -350,6 +350,10 @@ Use the following schema to return the extracted data as pure JSON only (no extr
 
         # Save to MongoDB
         user_id = request.form.get("user_id")
+        if not user_id:
+            return jsonify({"error": "Missing user_id in form data"}), 400
+
+        user_id = request.form.get("user_id")
         pdf_collection.insert_one({
             "pdf_id": pdf_id,
             "pdfName": filename,
