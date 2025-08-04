@@ -31,7 +31,7 @@ const ChatBot = ({ pdfId }) => {
       { sender: 'bot', text: '...', loading: true }
     ]);
 
-    fetch("http://localhost:5000/chat", {
+    fetch("/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ pdf_id: pdfId, question }),

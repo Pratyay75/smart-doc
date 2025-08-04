@@ -74,7 +74,7 @@ const handleExtract = () => {
     return yyyy && mm && dd ? `${yyyy}-${mm}-${dd}` : "";
   };
 
-  fetch("http://localhost:5000/extract", {
+  fetch("/extract", {
     method: "POST",
     body: fd,
   })
@@ -342,7 +342,7 @@ const handleExtract = () => {
 };
 
 
-    fetch("http://localhost:5000/save", {
+    fetch("/save", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),

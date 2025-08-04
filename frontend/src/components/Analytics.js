@@ -38,12 +38,12 @@ const Analytics = () => {
     try {
       const user_id = localStorage.getItem("token");
 
-      const res = await axios.post("http://localhost:5000/analytics", {
+      const res = await axios.post("/analytics", {
         filter,
         user_id,
       });
 
-      const pdfRes = await axios.post("http://localhost:5000/analytics/pdf-details", {
+      const pdfRes = await axios.post("/pdf-details", {
         user_id,
       });
 
@@ -65,7 +65,7 @@ const Analytics = () => {
   const fetchTrendData = useCallback(async () => {
     try {
       const user_id = localStorage.getItem("token");
-      const res = await axios.post("http://localhost:5000/analytics/trends", {
+      const res = await axios.post("/trends", {
         filter,
         user_id,
       });
