@@ -4,6 +4,7 @@ import uuid
 import logging
 from datetime import timedelta, datetime
 from flask import Flask, request, jsonify
+from flask import send_from_directory
 from flask_cors import CORS
 from dotenv import load_dotenv
 from pymongo import MongoClient
@@ -19,7 +20,8 @@ from ingest_pdf import push_chunks_to_search
 # ------------------ CONFIG ------------------
 load_dotenv()
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="frontend/build", static_url_path="")
+
 CORS(app, origins="http://localhost:3000")
 
 logging.basicConfig(level=logging.INFO)
@@ -589,6 +591,10 @@ def analytics_pdf_details():
             pdf["timestamp"] = pdf["timestamp"].strftime("%d-%m-%Y %H:%M")
     return jsonify({"pdfs": pdfs})
 
+
+@app.route("/")
+def index():
+    return send_from_directory(app.static_folder, "index.html")
 
 
 # ------------------ START SERVER ------------------
