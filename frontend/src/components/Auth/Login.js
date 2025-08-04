@@ -13,7 +13,7 @@ function Login({ onLogin }) {
     setLoading(true);
 
     try {
-      const res = await fetch("https://smartdoc-ebf9a0eddvd0ecet.eastus-01.azurewebsites.net/login", {
+      const res = await fetch("/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),

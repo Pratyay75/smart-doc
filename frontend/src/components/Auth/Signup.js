@@ -14,7 +14,7 @@ function Signup({ onToggle }) {
     setLoading(true);
 
     try {
-      const res = await fetch("https://smartdoc-ebf9a0eddvd0ecet.eastus-01.azurewebsites.net/signup", {
+      const res = await fetch("/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, password }),
