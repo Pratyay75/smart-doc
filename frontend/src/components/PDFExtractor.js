@@ -77,7 +77,7 @@ const handleExtract = () => {
     return yyyy && mm && dd ? `${yyyy}-${mm}-${dd}` : "";
   };
 
-  fetch("http://localhost:5000/extract", {
+  fetch("/extract", {
     method: "POST",
     body: fd,
   })

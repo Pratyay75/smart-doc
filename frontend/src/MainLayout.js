@@ -38,8 +38,7 @@ function MainLayout({ onLogout }) {
             <div className="home-description">
               <h2>Welcome, {userName}!</h2>
               <p>
-                Upload insurance contracts and automatically extract key fields
-                like name, contract amount, issue date, and exclusions.
+                Extract What Matters. Validate. Explore Insights.
               </p>
             </div>
           )}
