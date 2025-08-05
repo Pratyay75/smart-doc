@@ -31,7 +31,7 @@
 /* Chatbox container */
 .chatbot-box {
   position: fixed;
-  top: 80px;
+  bottom : 80px;
   right: 20px;
   width: 320px;
   height: 440px;

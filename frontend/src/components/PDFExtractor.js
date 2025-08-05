@@ -77,7 +77,7 @@ const handleExtract = () => {
     return yyyy && mm && dd ? `${yyyy}-${mm}-${dd}` : "";
   };
 
-  fetch("/extract", {
+  fetch("http://localhost:5000/extract", {
     method: "POST",
     body: fd,
   })
@@ -308,7 +308,7 @@ const handleExtract = () => {
 
   const handleSave = () => {
     if (!pdfId) {
-      alert("No PDF ID. Please extract data first.");
+      console.error("No PDF ID. Please extract data first.");
       return;
     }
 
@@ -353,7 +353,7 @@ const handleExtract = () => {
       body: JSON.stringify(payload),
     })
       .then((res) => res.json())
-      .then((data) => alert(data.message || "Saved"))
+      .then((data) => console.log(data.message || "Saved"))
       .catch((err) => console.error("Save error", err));
   };
 const scrollToPage = (pageNum) => {
@@ -370,6 +370,13 @@ const scrollToPage = (pageNum) => {
     <div className="pdf-extractor">
       <div className="left-panel">
   <h3>Upload PDF</h3>
+<div className="field">
+  <input
+    type="file"
+    accept="application/pdf"
+    onChange={handleFile}
+  />
+</div>
 <div className="button-group">
   <button
     className="extract-btn"
@@ -382,6 +389,7 @@ const scrollToPage = (pageNum) => {
       "Extract"
     )}
   </button>
+
 
   <button
     className="save-btn"
@@ -608,15 +616,7 @@ const scrollToPage = (pageNum) => {
           </div>
         </div>
       </div>
-<div className="button-group">
-  <button
-    className="save-btn"
-    onClick={handleSave}
-    disabled={!isExtracted}
-  >
-    Save
-  </button>
-</div>
+
 
       <Chatbot pdfId={pdfId} />
     </div>

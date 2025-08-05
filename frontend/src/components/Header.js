@@ -12,15 +12,23 @@ function Header({ onLogout }) {
 
   return (
     <header className="header">
-      <h1>PDF Extractor</h1>
-      <div className="user-section">
-        <FiUser size={20} />
-        <span className="username">{userName}</span>
-        <button className="logout-btn" onClick={onLogout} title="Logout">
-          <FiLogOut size={18} />
-        </button>
-      </div>
-    </header>
+ <div className="menu-and-title">
+  <div className="title-container">
+    <h1>SmartDoc AI</h1>
+  </div>
+
+
+  </div>
+  <div className="user-section">
+    <FiUser size={20} />
+    <span className="username">{userName}</span>
+    <button className="logout-btn" onClick={onLogout} title="Logout">
+      <FiLogOut size={18} />
+    </button>
+  </div>
+</header>
+
+
   );
 }
 
