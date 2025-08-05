@@ -8,9 +8,10 @@ function Signup({ onToggle }) {
 
   const signup = async () => {
     if (!name || !email || !password) {
-      alert("Please fill all fields");
+      console.warn("⚠️ Please fill all fields");
       return;
     }
+
     setLoading(true);
 
     try {
@@ -21,22 +22,32 @@ function Signup({ onToggle }) {
       });
 
       const data = await res.json();
+
       if (data.message) {
-        alert("Signup successful! Please login.");
+        console.log("✅ Signup successful. Please login.");
         onToggle(); // Switch to login form
       } else {
-        alert(data.error || "Signup failed");
+        console.warn("⚠️ Signup failed:", data.error || "Unknown error");
       }
     } catch (error) {
-      alert("Error connecting to server");
+      console.error("❌ Error connecting to server:", error);
     }
+
     setLoading(false);
   };
 
   return (
     <div className="auth-form">
-      <input placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
-      <input placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+      <input
+        placeholder="Name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+      <input
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
       <input
         type="password"
         placeholder="Password"

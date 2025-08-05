@@ -1,6 +1,13 @@
 /* Chatbot.css */
+.chatbot-container {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 1000;
+}
 
 /* Floating toggle button */
+
 .chatbot-toggle {
   position: fixed;
   bottom: 20px;
@@ -24,10 +31,10 @@
 /* Chatbox container */
 .chatbot-box {
   position: fixed;
-  bottom: 90px;
+  top: 80px;
   right: 20px;
-  width: 340px;
-  height: 480px;
+  width: 320px;
+  height: 440px;
   display: flex;
   flex-direction: column;
   background: rgba(255, 255, 255, 0.2);

@@ -12,6 +12,8 @@ pdfjs.disableFontFace = true;
 function PDFExtractor() {
   const [pdfFile, setPdfFile] = useState(null);
 const [loading, setLoading] = useState(false); // ⏳ loading spinner
+const [isExtracted, setIsExtracted] = useState(false); // ✅ new state
+
   const [numPages, setNumPages] = useState(null);
   const [pdfId, setPdfId] = useState(null);
   const [originalData, setOriginalData] = useState({});
@@ -63,6 +65,7 @@ const handleExtract = () => {
   }
 
   setLoading(true); // Start spinner
+  setIsExtracted(false);
 
   const fd = new FormData();
   fd.append("pdf", pdfFile);
@@ -131,6 +134,8 @@ const handleExtract = () => {
 
       setHighlights(terms);
       setHighlightRects([]);
+      setIsExtracted(true);
+
     })
     .catch((err) => console.error("Extraction error", err))
     .finally(() => setLoading(false)); // Stop spinner
@@ -365,21 +370,27 @@ const scrollToPage = (pageNum) => {
     <div className="pdf-extractor">
       <div className="left-panel">
   <h3>Upload PDF</h3>
-<input type="file" accept="application/pdf" name="pdf" onChange={handleFile} />
+<div className="button-group">
+  <button
+    className="extract-btn"
+    onClick={handleExtract}
+    disabled={!pdfFile || loading}
+  >
+    {loading ? (
+      <div className="spinner" />
+    ) : (
+      "Extract"
+    )}
+  </button>
 
-<button onClick={handleExtract} disabled={!pdfFile || loading} style={{ display: "flex", alignItems: "center" }}>
-  {loading ? (
-    <>
-      Extracting <div className="spinner" />
-    </>
-  ) : (
-    "Extract"
-  )}
-</button>
-
-
-
-
+  <button
+    className="save-btn"
+    onClick={handleSave}
+    disabled={!isExtracted}
+  >
+    Save
+  </button>
+</div>
   <div className="field">
     <label>Policyholder Name</label>
     <input
@@ -597,6 +608,15 @@ const scrollToPage = (pageNum) => {
           </div>
         </div>
       </div>
+<div className="button-group">
+  <button
+    className="save-btn"
+    onClick={handleSave}
+    disabled={!isExtracted}
+  >
+    Save
+  </button>
+</div>
 
       <Chatbot pdfId={pdfId} />
     </div>

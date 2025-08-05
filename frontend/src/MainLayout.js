@@ -8,6 +8,7 @@ import "./App.css";
 function MainLayout({ onLogout }) {
   const [activePage, setActivePage] = useState("home");
   const [userName, setUserName] = useState("");
+  const [sidebarOpen, setSidebarOpen] = useState(true); // ⬅️ Track sidebar open state
 
   useEffect(() => {
     const name = localStorage.getItem("name");
@@ -22,15 +23,23 @@ function MainLayout({ onLogout }) {
 
   return (
     <div className="layout">
-      <Sidebar onNavigate={setActivePage} onLogout={handleLogout} />
-      <div className="main-content">
+      <Sidebar
+        onNavigate={setActivePage}
+        onLogout={handleLogout}
+        sidebarOpen={sidebarOpen}
+        setSidebarOpen={setSidebarOpen}
+      />
+
+      {/* ⬇️ Add conditional class to shift */}
+      <div className={`main-content ${sidebarOpen ? "shifted" : ""}`}>
         <Header onLogout={handleLogout} />
         <div className="page-content">
           {activePage === "home" && (
             <div className="home-description">
               <h2>Welcome, {userName}!</h2>
               <p>
-                Upload insurance contracts and automatically extract key fields like name, contract amount, issue date, and exclusions.
+                Upload insurance contracts and automatically extract key fields
+                like name, contract amount, issue date, and exclusions.
               </p>
             </div>
           )}

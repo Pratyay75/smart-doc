@@ -7,9 +7,10 @@ function Login({ onLogin }) {
 
   const login = async () => {
     if (!email || !password) {
-      alert("Please enter email and password");
+      console.warn("⚠️ Please enter both email and password");
       return;
     }
+
     setLoading(true);
 
     try {
@@ -20,23 +21,22 @@ function Login({ onLogin }) {
       });
 
       const data = await res.json();
+
       if (data.token) {
-        // If name is missing, fallback to username from email
         const displayName = data.name || email.split("@")[0];
 
         localStorage.setItem("token", data.token);
         localStorage.setItem("name", displayName);
 
-        // Show welcome alert (optional)
-        alert(`Welcome, ${displayName}!`);
-
+        console.log(`✅ Welcome, ${displayName}`);
         onLogin(data.token);
       } else {
-        alert(data.error || "Login failed");
+        console.warn("⚠️ Login failed:", data.error || "Unknown error");
       }
     } catch (error) {
-      alert("Error connecting to server");
+      console.error("❌ Error connecting to server:", error);
     }
+
     setLoading(false);
   };
 
